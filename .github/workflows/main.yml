@@ -31,5 +31,7 @@ jobs:
         api_key: ${{ secrets.NEOCITIES_API_TOKEN }}
         cleanup: false
         neocities_supporter: false # set t
+        preview_before_deploy: true # print a deployment plan prior to waiting for files to upload.
+        dist_dir: public-checkerboard
 
 
