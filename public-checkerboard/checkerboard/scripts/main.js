@@ -37,7 +37,7 @@ function preLoad() {
 }
 
 function setup(pageToLoad) {
-	initCrossFrame("http://127.0.0.1:5501/");
+	initCrossFrame("*");
 	pageToLoad();
 
 	adjustLayout();
