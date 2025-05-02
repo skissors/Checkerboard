@@ -1,5 +1,5 @@
 import { petz_data } from "./petz.js";
-import { cleanName } from "../scripts/utilities.js";
+import { cleanName } from "../checkerboard/scripts/utilities.js";
 
 export function getPetByName(name) {
     for (let species in petz_data) {

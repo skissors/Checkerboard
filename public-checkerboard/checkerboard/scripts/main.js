@@ -1,4 +1,4 @@
-import { petz_data } from "../petz-data/petz.js";
+import { petz_data } from "../../petz-data/petz.js";
 import { cleanName, getJsonCookie, setJsonCookie } from "./utilities.js";
 import { loadIndex } from "./template-index.js";
 import { loadShowRecordPage } from "./template-show-info.js";
