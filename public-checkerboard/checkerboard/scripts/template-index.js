@@ -63,7 +63,7 @@ function buildUpdates() {
 function getRandomPet(petzList) {
     let rand = Math.floor(Math.random()*petzList.length)
     let pet = petzList[rand];
-    let petImg = "../../petz-data/petz/" + pet.species + "/" + pet.breed + "/" + cleanName(pet.name) + "/" + cleanName(pet.name) + ".png";
+    let petImg = `../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${cleanName(pet.name)}/${cleanName(pet.name)}.png`;
     document.getElementById("potd-img").src=petImg; ;
     document.getElementById("potd-img").addEventListener("click", ()=>{buildPetPage(cleanName(pet.name))});
 
