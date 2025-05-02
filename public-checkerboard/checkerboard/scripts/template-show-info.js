@@ -122,7 +122,7 @@ export function getShowRecordBlocks(pet) {
 function getAwardsBlock(pet) {
     let awards = ""
     for (let a in pet.awards) {
-        awards += `<img src="../../petz-data/petz/${pet.species}/${pet.breed}/${cleanName(pet.name)}/award/${pet.awards[a]}">`
+        awards += `<img src="../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${cleanName(pet.name)}/award/${pet.awards[a]}">`
     }
 
     let block =
