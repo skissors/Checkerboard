@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<title>Checkerboard</title>
+
+		<link rel="stylesheet" href="styles/layout-styles.css" />
+		<link rel="stylesheet" href="styles/style.css" />
+        
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<script src="scripts/main.js" type="module"></script>
+		
+	</head>
+	<body>
+		<div class="checkerboard">
+			<div class="checkerboard-grid" id="checkerboard"></div>
+		</div>
+		<div class="wrapper">
+			<main id="content-ribbon">
+				<a href="index.html"><img src="img/logo2.png" class="logo" /></a>
+
+				<div class="content" id="inner-content">
+					<p style="text-align: center">page loading... <br />this site requires javascript</p>
+				</div>
+
+				<nav>
+					<div class="dropdown">
+						<div id="catz" class="dropbtn">Catz</div>
+						<div id="catzdd" class="dropdown-content">
+							<div class="allclear">
+								<div>All</div>
+								<div>Clear</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div id="dogz" class="dropbtn">Dogz</div>
+						<div id="dogzdd" class="dropdown-content">
+							<div class="allclear">
+								<div>All</div>
+								<div>Clear</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div id="other" class="dropbtn">Other</div>
+						<div id="otherdd" class="dropdown-content">
+							<div class="allclear">
+								<div>All</div>
+								<div>Clear</div>
+							</div>
+						</div>
+					</div>
+
+					<div class="dropdown">
+						<div id="settings" class="dropbtn"><i class="fa-solid fa-gear"></i></div>
+						<div id="settingsdd" class="dropdown-content" style="right: 0; text-wrap: nowrap"></div>
+					</div>
+				</nav>
+			</main>
+			<div class="mobile-checkerboard" id="mobile-checkerboard"></div>
+		</div>
+
+		<script src="https://kit.fontawesome.com/d4992e7086.js" crossorigin="anonymous"></script>
+	</body>
+</html>

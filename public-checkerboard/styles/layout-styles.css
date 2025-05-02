@@ -1,0 +1,231 @@
+@font-face {
+    font-family: "Pixel Operator";
+    src: url("fonts/PixelOperator/PixelOperatorMono.ttf") format("truetype");
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    --c-default: default;
+	--c-pointer: pointer;
+	--c-text: text;
+
+	--c-vertical: ns-resize;
+	--c-horizontal: ew-resize;
+	--c-nw-resize: nw-resize;
+	--c-sw-resize: sw-resize;
+
+	--c-grab: grab;
+	--c-grabbing: grabbing;
+}
+  
+body {
+    margin:0;
+    background-image: url('../img/newbkgd.png');
+    font-family:'Pixel Operator', "Courier New", Courier, monospace;
+	font-size:18px;
+
+    cursor: var(--c-default);
+}
+
+a {
+    cursor: var(--c-pointer);
+}
+
+/* Checkerboard Styles*/
+.checkerboard {
+    box-sizing: content-box;
+    width: 100%;
+    background:#ffffff url('../img/check.png') right top;
+    height:600px;
+
+    position: fixed;
+    z-index: 2;
+    top: 45%;
+    transform: translateY(-45%);
+
+    border-top:3px solid black;
+    border-bottom:9px solid black;
+    /* box-shadow: 0 0 20px rgba(0,0,0,5); */
+}
+
+.checkerboard-grid {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap-reverse;
+    justify-content: flex-start;
+    align-items: flex-start;
+    align-content: flex-start;
+    height: 100vh;
+    max-height: 100%;
+}
+
+.square, .sq-show-face {
+    width: 75px;
+    height: 75px;
+    overflow: hidden;
+    cursor: var(--c-pointer);
+}
+.square .img-square, .square:hover .sq-show, .sq-hide {
+    display: none;
+}
+.square:hover .img-square {
+    display: inline;
+}
+
+.sq-show-face .img-square {
+    display: inline;
+}
+.sq-show-face:hover .sq-show {
+    display: inline;
+}
+.sq-show-face:hover .img-square {
+    display: none;
+}
+
+.next-sq {
+    font-size: 18px;
+    letter-spacing: 2px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+
+.wrapper{
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+main {
+    min-height: 100vh;
+    width: 675px;
+    background: #ffffff url('../img/index.png');
+    /* border-left:5px solid #2c2c2c;
+    border-right:5px solid #2c2c2c; */
+    border-left:4px solid #000000;
+    border-right:4px solid #000000;
+    /* border-left:8px solid rgb(80, 0, 155);
+    border-right:8px solid rgb(80, 0, 155); */
+    position: absolute;
+    right:225px;
+    z-index: 3;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}   
+
+.content {
+    width: 100%;
+    padding: 0 15px;
+    flex-grow: 10;
+}
+
+.logo {
+    padding-top: 10px;
+    cursor: var(--c-pointer);
+}
+
+
+h2 {
+    font-size: 30px;
+    letter-spacing: 1px;
+    text-decoration: none;
+
+    font-weight: bold;
+    margin: 0;
+}
+
+hr {
+	width: 90%;
+    border: 0 none;
+  	border-top: 3px dashed #151515;
+ 	background: none;
+ 	height:0;
+}
+
+a {
+    text-decoration: none;
+}
+.fake-link {
+    cursor: var(--c-pointer);
+    border: 3px solid black;
+    box-shadow: 1px 1px, 2px 2px, 3px 3px, 4px 4px, -1px 1px, -2px 2px, -3px 3px, -4px 4px;
+    margin: 8px;
+    margin-top: 0;
+    padding: 3px 6px;
+    width: fit-content;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 22px;
+    background-color: white;
+    justify-self: center; 
+}
+
+.fake-link:hover {
+    background-color: rgb(15, 15, 15);
+    color:white;
+    box-shadow:black 1px 1px,black 2px 2px,black 3px 3px,black 4px 4px,black -1px 1px,black -2px 2px,black -3px 3px,black -4px 4px;
+}
+
+.fake-link:active {
+    position: relative;
+    top:2px;
+    left:2px;
+
+    box-shadow: black 1px 1px, black 2px 2px,  black -1px 1px, black -2px 2px;
+}
+
+
+.mobile-checkerboard{
+    box-sizing: content-box;
+    width:100%;
+    background-image: url("../img/check.png");
+    background-position: left calc(mod(100vw, 75px)/2) top;
+    height: 75px;
+    position: relative;
+    display: none;
+    border-bottom: black 9px solid;
+
+    flex-wrap: wrap;
+    padding: 0 calc(mod(100vw, 75px)/2);
+
+}
+
+@media only screen and (max-width: 900px) {
+    main {
+        width: 100%;
+        border:none;
+        position: static;
+        min-height: auto;
+        border-bottom: black 9px solid;
+    }
+    .checkerboard {
+        display: none;
+    }
+    .logo {
+        max-width: 100%;
+    }
+    .mobile-checkerboard {
+        display: flex;
+    }
+}
+
+@media only screen and (max-height: 600px) {
+    .checkerboard {
+        top:0;
+        transform: none;
+    }
+}
+
