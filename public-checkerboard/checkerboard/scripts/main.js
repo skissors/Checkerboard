@@ -44,7 +44,7 @@ function setup(pageToLoad) {
 	addEventListener("resize", adjustLayout);
 
 	loadDropdown();
-	//cacheImages();    
+	///cacheImages();    
 }
 
 function cacheImages() {
