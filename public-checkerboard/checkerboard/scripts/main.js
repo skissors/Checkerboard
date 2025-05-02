@@ -3,7 +3,7 @@ import { cleanName, getJsonCookie, setJsonCookie } from "./utilities.js";
 import { loadIndex } from "./template-index.js";
 import { loadShowRecordPage } from "./template-show-info.js";
 import { buildPetPage } from "./template-petpage.js";
-//import { initCrossFrame, sendUrlEvent } from "../../resources/core-cross-frame/cross-frame-child.js";
+import { initCrossFrame, sendUrlEvent } from "https://oodlecat.meowandsparkle.party/resources/core-cross-frame/cross-frame-child.js";
 
 let petzList = [];
 let petCheckboxes = {};
@@ -37,7 +37,7 @@ function preLoad() {
 }
 
 function setup(pageToLoad) {
-	//initCrossFrame();
+	initCrossFrame("http://127.0.0.1:5501/");
 	pageToLoad();
 
 	adjustLayout();
@@ -266,7 +266,7 @@ function squareHTML(pet, color) {
 	otherCheckboxes.theme && otherCheckboxes.theme.showsq ? newSq.classList.add("sq-show-face") : newSq.classList.add("square");
 	newSq.addEventListener("click", () => {
 		buildPetPage(petname);
-        //sendUrlEvent();
+        sendUrlEvent();
 	});
 	let img =
 		/*html*/
