@@ -113,7 +113,7 @@ function buildPetCommentInfo(pet) {
 function buildGalleryInfo(pet) {
 	let pix = "";
 	for (let a in pet.gallery) {
-		pix += `<img src="../../petz-data/petz/${pet.species}/${pet.breed}/${cleanName(pet.name)}/gallery/${pet.gallery[a]}">`;
+		pix += `<img src="../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${cleanName(pet.name)}/gallery/${pet.gallery[a]}">`;
 	}
 
 	let block = `<hr>

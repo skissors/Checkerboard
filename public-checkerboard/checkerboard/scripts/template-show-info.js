@@ -12,7 +12,7 @@ export function buildPetShowInfo(pet, hideAwards) {
     <div class="pet-shows">
         ${hideAwards ?  "" : "<h2>Show Records</h2>"}
         <div class="show-header">
-            <img src="../../petz-data/petz/${pet.species}/${pet.breed}/${cName}/${cName}-pose.png" class="show-pic">
+            <img src="../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${cName}/${cName}-pose.png" class="show-pic">
             <div class="show-name">${getShowname(pet, recordData, addTitleData)}</div>
         </div>
         <div class="show-info">
