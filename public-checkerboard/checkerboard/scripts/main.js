@@ -270,9 +270,9 @@ function squareHTML(pet, color) {
 	});
 	let img =
 		/*html*/
-		`<img src="../../petz-data/petz/${pet.species}/${pet.breed}/${petname}/${petname}-square.png" class="img-square">
-         <img src="../../petz-data/petz/${pet.species}/${pet.breed}/${petname}/${petname}-black.png" class="img-black ${color === "black" ? "sq-show" : "sq-hide"}">
-         <img src="../../petz-data/petz/${pet.species}/${pet.breed}/${petname}/${petname}-white.png" class="img-white ${color === "white" ? "sq-show" : "sq-hide"}">`;
+		`<img src="../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${petname}/${petname}-square.png" class="img-square">
+         <img src="../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${petname}/${petname}-black.png" class="img-black ${color === "black" ? "sq-show" : "sq-hide"}">
+         <img src="../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${petname}/${petname}-white.png" class="img-white ${color === "white" ? "sq-show" : "sq-hide"}">`;
 	newSq.innerHTML = img;
 	return newSq;
 }
