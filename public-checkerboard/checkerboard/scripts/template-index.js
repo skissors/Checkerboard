@@ -2,7 +2,7 @@ import { setParam, cleanName } from "./utilities.js";
 import { updates as petzUpdates } from "./data/updates.js";
 import { loadShowRecordPage } from "./template-show-info.js";
 import { buildPetPage } from "./template-petpage.js";
-//import { sendUnlockThemeEvent } from "../../resources/core-cross-frame/cross-frame-child.js"; 
+import { sendUnlockThemeEvent } from "https://oodlecat.meowandsparkle.party/resources/core-cross-frame/cross-frame-child.js"; 
 
 export function loadIndex(petzCount, petzList) {
     setParam("page", "index")
@@ -10,7 +10,7 @@ export function loadIndex(petzCount, petzList) {
     getRandomPet(petzList);
     document.getElementById("potdButton").addEventListener("click", ()=>{getRandomPet(petzList)});
     document.getElementById("showRecordPage").addEventListener("click", ()=>{loadShowRecordPage()})
-    //document.getElementById("mascot").addEventListener("click", ()=>{sendUnlockThemeEvent("cxbdark", "theme")});
+    document.getElementById("mascot").addEventListener("click", ()=>{sendUnlockThemeEvent("cxbdark", "theme")});
 }
 
 function buildIndex(petzCount) {
