@@ -1,4 +1,10 @@
 export const updates = [
+        {
+        day: "05",
+        month: "05",
+        year: "2025",
+        text: `Checkerboard has moved! In order to get faster load times, Checkerboard will now be hosted on Neocites. For those of you visiting though nekOS, this shouldn't be a big change, but for those of you who visit through the standalone site, please update your links and bookmarks`,
+    },
     {
         day: "03",
         month: "04",
