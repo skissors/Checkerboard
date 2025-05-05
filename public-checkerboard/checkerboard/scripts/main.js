@@ -77,7 +77,6 @@ function buildPetList() {
 	petzList = [];
 	for (let species in petCheckboxes) {
 		for (let breed in petCheckboxes[species]) {
-			console.log(breed);
 			if (petCheckboxes[species][breed]) {
 				nothingChecked = false;
 				for (let entry in petz_data[species][breed]) {
@@ -101,7 +100,7 @@ function buildPetList() {
 				}
 			}
 		}
-		console.log("nothingChecked");
+		//console.log("nothingChecked");
 	}
 
 }
@@ -139,7 +138,7 @@ function applySpecialFilters(pet) {
 /* CHECKERBOARD Layout Functions */
 
 function adjustLayout() {
-	console.log("adjustLayout")
+	//console.log("adjustLayout")
 	if (document.body.clientWidth < 900) {
 		adjustLayoutForMobile();
 		return;
@@ -204,7 +203,7 @@ function loadSquaresForMobile(rows, cols) {
 }
 
 function loadSquares(rows, cols, right, page, topRightColor) {
-	console.log("loadSquares " + rows + " " + cols)
+	//console.log("loadSquares " + rows + " " + cols)
 	document.getElementById("checkerboard").innerHTML = "";
 	buildPetList();
 
