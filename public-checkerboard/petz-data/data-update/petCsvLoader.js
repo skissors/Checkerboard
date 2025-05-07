@@ -1,6 +1,6 @@
 import { petz_data as oldPetzData } from "../petz.js";
 import { getPointsFromPlacement } from "../petzFunc.js";
-import { checkImageExists, cleanName } from "../checkerboard/scripts/utilities.js";;
+import { checkImageExists, cleanName } from "../../checkerboard/scripts/utilities.js";
 import { jsonStructure, personalityValues, showTypes, poseShows } from "./petHelperData.js";
 
 let newPetData = {};
