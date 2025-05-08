@@ -3,6 +3,7 @@
 // do requests like it's 2000
 function WormholeServer(e){
     var request = e.data;
+    console.log("received request", e.data)
     switch(request.method){
     case 'fetch':
         var options = request.params;
