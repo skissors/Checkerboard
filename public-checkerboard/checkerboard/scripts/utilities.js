@@ -19,12 +19,12 @@ export function getJsonCookie(name) {
 	return null
 }
 
-export function setCookieValue(name, value, time=31536000, sameSite="Lax") {
-    document.cookie = `${name}=${value}; Max-Age=${time}; SameSite=${sameSite}; path=/`;
+export function setCookieValue(name, value, time=31536000) {
+    document.cookie = `${name}=${value}; Max-Age=${time}; Secure; SameSite=None; path=/`;
 }
 
-export function setJsonCookie(name, value, time=31536000, sameSite="Lax") {
-	setCookieValue(name, JSON.stringify(value), time, sameSite)
+export function setJsonCookie(name, value, time=31536000) {
+	setCookieValue(name, JSON.stringify(value), time)
 }
 
 export function setParam(name, value) {

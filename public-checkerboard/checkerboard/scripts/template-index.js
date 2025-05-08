@@ -7,9 +7,10 @@ import { sendUnlockThemeEvent } from "https://oodlecat.meowandsparkle.party/reso
 export function loadIndex(petzCount, petzList) {
     setParam("page", "index")
     document.getElementById("inner-content").innerHTML = buildIndex(petzCount);
+    buildUpdates();
     getRandomPet(petzList);
     document.getElementById("potdButton").addEventListener("click", ()=>{getRandomPet(petzList)});
-    document.getElementById("showRecordPage").addEventListener("click", ()=>{loadShowRecordPage()})
+    //document.getElementById("showRecordPage").addEventListener("click", ()=>{loadShowRecordPage()})
     document.getElementById("mascot").addEventListener("click", ()=>{sendUnlockThemeEvent("cxbdark", "theme")});
 }
 
@@ -27,37 +28,51 @@ function buildIndex(petzCount) {
     <div class="update-div">
 
         <div class="update-box shadow">
-            <h2>Updates</h2>
-            <hr style="width:100%">
-            <div class="update-content">
-                ${buildUpdates()}
+            <div class="index-box-header">
+                <h2>Updates</h2>
+                <a class="index-box-icon" id="rssButton" href="feed.xml" target="_blank"><i class="fa-solid fa-rss"></i></a>
+            </div>
+            <div class="update-content" id="update-content">
             </div>
         </div>
-        <div class="potd-box cbox-style shadow">
-            <div class="potd-header">
-                <div>Random Pet</div>
-                <div class="potd-x" id="potdButton"><i class="fa-solid fa-rotate"></i></div>
+        <div class="potd-box shadow">
+            <div class="index-box-header">
+                <h2>Random Pet</h2>
+                <div class="index-box-icon" id="potdButton"><i class="fa-solid fa-rotate"></i></div>
             </div>
             <div class="potd-content">
                 <img  id="potd-img" src="">
             </div>
         </div>
 
-        <div class="fake-link" id="showRecordPage">view show records page</div>
+        <!--<div class="fake-link" id="showRecordPage">view show records page</div>-->
     </div>
     `
     return indexHTML;
 }
 
 function buildUpdates() {
-    let updateBlocks = ""
-    for (let u in petzUpdates) {
-        let update = petzUpdates[u]
-        let t = `<div>${update.year}/${update.month}/${update.day} <br> ${update.text}</div>`
-        if (u != petzUpdates.length-1) t += `------`
-        updateBlocks += t;
-    }
-    return updateBlocks
+    const RSS_URL = `./feed.xml`;
+    fetch(RSS_URL)
+    .then(response => response.text())
+    .then(str => new window.DOMParser().parseFromString(str, "text/xml"))
+    .then(data => {
+        console.log(data);
+        const items = data.querySelectorAll("item");
+
+        let updateBlocks = ""
+        items.forEach((post) => {
+            let date = new Date(post.querySelector("pubDate").innerHTML)
+            let text = post.querySelector("description").innerHTML
+            let template = `<div class="update-item">
+                                ${date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })} <br> ${text}
+                            </div>`
+            updateBlocks += template;
+        })
+
+        let updateBox = document.getElementById("update-content");
+        updateBox.innerHTML = updateBlocks 
+    });
 }
 
 function getRandomPet(petzList) {

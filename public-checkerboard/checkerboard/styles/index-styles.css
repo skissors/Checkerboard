@@ -1,0 +1,112 @@
+.update-div {
+	display: grid;
+	grid-template-columns: 1fr auto;
+	grid-template-rows: 1fr auto;
+	place-content: center;
+	align-items: center;
+	gap: 0 20px;
+	margin: 0 20px;
+	height: 260px;
+}
+
+.index-box-header {
+    font-size: 24px;
+
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	background-color: #9981c2;
+	border-bottom: black 3px solid;
+	padding: 2px 3px;
+	padding-left: 5px;
+}
+.index-box-header h2 {
+	letter-spacing: 1px;
+	text-decoration: none;
+
+	font-weight: bold;
+	margin: 0;
+}
+
+.index-box-icon {
+	border: black 3px solid;
+	padding: 0;
+	height: fit-content;
+	line-height: 0;
+	border-radius: 5px;
+	padding: 1px;
+	background-color: #898989;
+	cursor: var(--c-pointer);
+
+    width: 24px;
+    height: 24px;
+    box-sizing: content-box;
+    text-align: center;
+    color: black;
+}
+
+.update-box {
+	min-height: 0;
+	height: calc(100% - 10px);
+	max-height: 250px;
+	background-color: white;
+
+	display: grid;
+	grid-template-rows: auto auto 1fr;
+	/* padding: 0.25em 0.5em; */
+}
+
+.update-box hr {
+	margin: 0;
+	border-style: solid;
+}
+
+.update-content {
+	height: 100%;
+	padding: 0 8px;
+	padding-right: 16px;
+	overflow: auto;
+	text-align: justify;
+}
+
+.update-content div {
+	padding: 6px 0;
+	border-bottom: dashed black 2px;
+}
+
+.update-content div:last-child {
+	border-bottom: dashed black 0px;
+}
+
+.potd-box {
+	height: 250px;
+	width: 250px;
+	display: flex;
+	flex-direction: column;
+	font-weight: bold;
+	font-size: 24px;
+
+	grid-row: span 2;
+}
+
+.potd-header {
+	display: flex;
+	align-items: baseline;
+	justify-content: space-between;
+	background-color: #9981c2;
+	border-bottom: black 3px solid;
+	padding: 2px 3px;
+	padding-left: 5px;
+}
+
+.potd-content {
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: url("../img/index-light.png");
+	overflow: hidden;
+}
+#potd-img {
+	cursor: var(--c-pointer);
+}
