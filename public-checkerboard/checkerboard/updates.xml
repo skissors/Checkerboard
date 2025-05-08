@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <atom:link href="[RSS URL]" rel="self" type="application/rss+xml" />
+    <atom:link href="https://oodlecat.neocities.org/checkerboard/updates.xml" rel="self" type="application/rss+xml" />
     <title>Checkerboard</title>
     <link>https://oodlecat.neocities.org/checkerboard/</link>
     <description>skissors' petz crew site</description>
@@ -9,7 +9,7 @@
 
     <item>
       <title>Mon, 05 May 2025</title>
-      <guid>7A33D30A-27B8-48AD-A3CA-7FC4FD32D5E0</guid>
+      <guid isPermaLink="false">7A33D30A-27B8-48AD-A3CA-7FC4FD32D5E0</guid>
       <pubDate>Mon, 05 May 2025 12:00:00 -0600</pubDate>
       <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
       <description>
@@ -18,8 +18,8 @@
     </item>
 
     <item>
-      <title>Mon, 03 April 2025</title>
-      <guid>DFA5F63B-7313-4556-B41C-DAF47DBB6105</guid>
+      <title>Thu, 03 Apr 2025 12:00:00 -0600</title>
+      <guid isPermaLink="false">DFA5F63B-7313-4556-B41C-DAF47DBB6105</guid>
       <pubDate>Mon, 03 April 2025 00:00:00 -0600</pubDate>
       <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
       <description>
