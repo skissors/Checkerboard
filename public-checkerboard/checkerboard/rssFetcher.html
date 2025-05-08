@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>nekOS rss fetcher</title>
+	</head>
+	<body>
+		<script>
+			getLatestRSSUpdate("./feed.xml");
+
+			function getLatestRSSUpdate(rssUrl) {
+				fetch(rssUrl)
+					.then((response) => response.text())
+					.then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
+					.then((data) => {
+						console.log(data);
+						let items = data.querySelectorAll("item");
+						let latestUpdate = items[0];
+
+						let latestUpdateData = {
+							date: new Date(latestUpdate.querySelector("pubDate").innerHTML),
+							description: latestUpdate.querySelector("description").innerHTML,
+						};
+						console.log("sending latest update", latestUpdateData);
+						window.top.postMessage(JSON.stringify(latestUpdateData), "*");
+					});
+			}
+		</script>
+	</body>
+</html>
