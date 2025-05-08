@@ -29,7 +29,7 @@ export function loadWithExistingPetInfo() {
 
 			for (let p in oldPetzData[species][breed]) {
 				let pet = oldPetzData[species][breed][p];
-				if (!pet.personality) updatePetDataFormat(pet);
+				//if (!pet.personality) updatePetDataFormat(pet);
 				newPetData[species][breed].push(pet);
 			}
 
@@ -63,7 +63,7 @@ function updatePetDataFormat(pet) {
 }
 
 function loadCSV(url, callback, target, species, breed) {
-	console.log("loading file: " + url)
+	console.log("loading file: " + url);
 	$.ajax({
 		type: "GET",
 		url: url,
@@ -81,8 +81,19 @@ function csvCallback(dataList, target, species, breed) {
 		if (!oldPet) {
 			target.push(buildNewPetInfoFromCSV(csvPet, species, breed));
 		} else {
-			mergeCSVPetInfo(oldPet, csvPet,  species, breed);
+			mergeCSVPetInfo(oldPet, csvPet, species, breed);
 		}
+	});
+	target.sort((a, b) => {
+		const nameA = a.name.toUpperCase(); // Ignore case
+		const nameB = b.name.toUpperCase(); // Ignore case
+		if (nameA < nameB) {
+			return -1;
+		}
+		if (nameA > nameB) {
+			return 1;
+		}
+		return 0; // Names are equal
 	});
 }
 
@@ -152,15 +163,16 @@ function buildNewPetInfoFromCSV(csvPet, species, breed) {
 	});
 	newPet.personality = personality;
 
-	let showImg = `../petz/${species}/${breed}/${cleanName(newPet.name)}/${cleanName(newPet.name)}-pose.png`
-	if (checkImageExists(showImg, (exists) => {
-		if (exists) {
-			newPet.show_points = {};
-			newPet.show_points["Pose Shows"] = 0;
-		}
-	}))
-
-	newPet = mergeOldPetInfo(newPet);
+	let showImg = `../petz/${species}/${breed}/${cleanName(newPet.name)}/${cleanName(newPet.name)}-pose.png`;
+	if (
+		checkImageExists(showImg, (exists) => {
+			if (exists) {
+				newPet.show_points = {};
+				newPet.show_points["Pose Shows"] = 0;
+			}
+		})
+	)
+		newPet = mergeOldPetInfo(newPet);
 	return newPet;
 }
 
@@ -204,21 +216,20 @@ function mergeCSVPetInfo(newPet, csvPet, species, breed) {
 	}
 
 	//build new pedigree info
-		if(!newPet.breedFace) newPet.breedFace = csvPet["Breed Face"];
-		newPet.generations = csvPet["Generations"];
-		if (!newPet.pedigree) newPet.pedigree = {};
+	if (!newPet.breedFace) newPet.breedFace = csvPet["Breed Face"];
+	newPet.generations = csvPet["Generations"];
+	if (!newPet.pedigree) newPet.pedigree = {};
 
-		newPet.pedigree.purebred = false;
-		if (csvPet["Blood Status"] === "Purebred") newPet.pedigree.purebred = true;
+	newPet.pedigree.purebred = false;
+	if (csvPet["Blood Status"] === "Purebred") newPet.pedigree.purebred = true;
 
-		newPet.pedigree.inbred = true;
-		if (csvPet["Inbred %"] === "0.0") newPet.pedigree.inbred = false;
+	newPet.pedigree.inbred = true;
+	if (csvPet["Inbred %"] === "0.0") newPet.pedigree.inbred = false;
 
-		newPet.pedigree.hexed = false;
-		if (breed === "hexed") newPet.pedigree.hexed = true;
-	
+	newPet.pedigree.hexed = false;
+	if (breed === "hexed") newPet.pedigree.hexed = true;
 
-	buildGenInfo(newPet)
+	buildGenInfo(newPet);
 
 	//personality info
 	newPet.flavors = csvPet["Favorite Flavor"].split(",");
@@ -254,15 +265,16 @@ function mergeCSVPetInfo(newPet, csvPet, species, breed) {
 				}
 			}
 		}
-	}
-	else {
-		let showImg = `../petz/${species}/${breed}/${cleanName(newPet.name)}/${cleanName(newPet.name)}-pose.png`
-		if (checkImageExists(showImg, (exists) => {
-			if(exists) {
-				newPet.show_points = {};
-				newPet.show_points["Pose Shows"] = 0;
-			}
-		}));
+	} else {
+		let showImg = `../petz/${species}/${breed}/${cleanName(newPet.name)}/${cleanName(newPet.name)}-pose.png`;
+		if (
+			checkImageExists(showImg, (exists) => {
+				if (exists) {
+					newPet.show_points = {};
+					newPet.show_points["Pose Shows"] = 0;
+				}
+			})
+		);
 	}
 }
 
