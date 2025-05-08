@@ -5,10 +5,10 @@
     <title>Checkerboard</title>
     <link>https://oodlecat.neocities.org/checkerboard/</link>
     <description>skissors' petz crew site</description>
-    <ttl>5</ttl>
+    <ttl>180</ttl>
 
     <item>
-      <title>Mon, 05 May 2025</title>
+      <title>Checkerboard has moved!</title>
       <guid isPermaLink="false">7A33D30A-27B8-48AD-A3CA-7FC4FD32D5E0</guid>
       <pubDate>Mon, 05 May 2025 12:00:00 -0600</pubDate>
       <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
@@ -18,12 +18,83 @@
     </item>
 
     <item>
-      <title>Thu, 03 Apr 2025 12:00:00 -0600</title>
+      <title>Pet Personality and Favorite Info</title>
       <guid isPermaLink="false">DFA5F63B-7313-4556-B41C-DAF47DBB6105</guid>
       <pubDate>Mon, 03 April 2025 00:00:00 -0600</pubDate>
       <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
       <description>
             Added a ton of new petz, and also started adding pet personality and favorite info! Right now this data is only available for my Catz, but it will slowly be added to all my petz as I convert them to my new data system
+      </description>
+    </item>
+
+    <item>
+      <title>Random Pet Box and New Filters</title>
+      <guid isPermaLink="false">19E15D55-F21C-4A3B-A5BF-F7EF4DFDC4F3</guid>
+      <pubDate>Thu, 27 Feb 2025 12:00:00 -0600</pubDate>
+      <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
+      <description>
+            Several new site features! First, I replaced the barely used cbox with a random pet box. I also added 3 new filters under the settings menu, allowing you to filter by content on the pet pages. Finally, I made some minor tweaks the site style, especially the mobile layout. It should kick in earlier and look a little better. And, as always, I added some more new petz.`,
+      </description>
+    </item>
+
+    <item>
+      <title>Final Batch of Advent Petz</title>
+      <guid isPermaLink="false">36F5B39C-E539-4058-B61F-C9EB9F7ABBD5</guid>
+      <pubDate>Wed, 05 Feb 2025 12:00:00 -0600</pubDate>
+      <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
+      <description>
+            Added all of my advent petz in a reasonable amount of time, yay!
+      </description>
+    </item>
+
+    <item>
+      <title>More Advent Petz</title>
+      <guid isPermaLink="false">67E0AC3F-00C2-49E0-9F50-50298A8E6A26</guid>
+      <pubDate>Tue, 04 Feb 2025 12:00:00 -0600</pubDate>
+      <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
+      <description>
+            Added another batch of advent petz.
+      </description>
+    </item>
+
+    <item>
+      <title>New Show Ribbon Template</title>
+      <guid isPermaLink="false">295C39C3-B1BD-4E7A-A668-D6541C5FBDBD</guid>
+      <pubDate>Thu, 16 Jan 2025 12:00:00 -0600</pubDate>
+      <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
+      <description>
+          Added a couple batches of advent petz. Also updated the show records template to use big fancy ribbons if there's room, and added a new "view show records" button to the homepage so you can view all my champs on a single page.
+      </description>
+    </item>
+
+
+    <item>
+      <title>Show All Petz Icons</title>
+      <guid isPermaLink="false">40904965-3327-4A45-A663-8C4FAF2E921D</guid>
+      <pubDate>Sat, 04 Jan 2025 12:00:00 -0600</pubDate>
+      <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
+      <description>
+            Added a ton of previously acquired petz. Also added a checkbox to let you show all the pet icons
+      </description>
+    </item>
+
+    <item>
+      <title>Bug Fixes</title>
+      <guid isPermaLink="false">F0EFE886-37DB-4001-A8BC-C08A3B0D09A9</guid>
+      <pubDate>Tue, 31 Dec 2024 12:00:00 -0600</pubDate>
+      <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
+      <description>
+            Moved the site, fixed a bug when the window resizes, and added a couple petz.
+      </description>
+    </item>
+
+    <item>
+      <title>Checkerboard is back!</title>
+      <guid isPermaLink="false">73527F8A-38B5-47CC-9F62-FD705DBC09F1</guid>
+      <pubDate>Fri, 13 Dec 2024 12:00:00 -0600</pubDate>
+      <link>https://oodlecat.neocities.org/checkerboard/?page=index</link>
+      <description>
+            Checkerboard is back! I had a lot of fun putting this site together, so I hope you have a fun time looking at all my lovely petz!
       </description>
     </item>
 
