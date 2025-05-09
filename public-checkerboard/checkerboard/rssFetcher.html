@@ -12,18 +12,21 @@
 			function idListener(e) {
 				let data = JSON.parse(e.data);
 				if (data.id) {
-					getLatestRSSUpdate("./feed.xml", data.id, e.source);
+					postLatestRSSUpdate("./feed.xml", data.id, e.source);
 				}
 			}
 
-			function getLatestRSSUpdate(rssUrl, id, source) {
+			function postLatestRSSUpdate(rssUrl, id, source) {
 				fetch(rssUrl)
 					.then((response) => response.text())
 					.then((str) => new window.DOMParser().parseFromString(str, "text/xml"))
 					.then((data) => {
 						console.log(data);
 						let items = data.querySelectorAll("item");
-						let latestUpdate = items[0];
+						let latestUpdate = Array.from(items).reduce(
+							(latest, current) => (new Date(current.querySelector("pubDate").innerHTML) > new Date(latest.querySelector("pubDate").innerHTML) ? current : latest),
+							items[0]
+						);
 
 						let latestUpdateData = {
 							id: id,
