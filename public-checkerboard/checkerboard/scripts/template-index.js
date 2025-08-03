@@ -79,7 +79,7 @@ function buildUpdates() {
 
 			let updateBox = document.getElementById("update-content");
             updateBox.innerHTML = updateBlocks;
-            postToUpdateNetwork(data);
+            postToUpdateNetwork(updateBlocks);
 		});
 }
 
@@ -89,6 +89,8 @@ async function postToUpdateNetwork(rssData) {
 	const hashBuffer = await crypto.subtle.digest("SHA-256", data);
 	const hashArray = Array.from(new Uint8Array(hashBuffer));
 	const hashHex = hashArray.map((b) => b.toString(16).padStart(2, "0")).join("");
+
+    console.log("hash", hashHex)
 
 	const reportedUrl = "https://oodlecat.neocities.org/checkerboard/?page=index" || window.location.origin;
 	const siteName = "Checkerboard";
