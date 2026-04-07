@@ -51,10 +51,6 @@ function buildPetBasicInfo(pet) {
 	let block = `<div class="pet-info">
 		<div style="position:relative">
 			<img src="../../petz-data/petz/${pet.species}/${cleanName(pet.breed)}/${cName}/${cName}.png">
-			${ cName === "sprite" ? `
-				<a href="https://oodlecat.meowandsparkle.party/sites/egghunt/egg-44582.html">
-				<img src="https://oodlecat.meowandsparkle.party/sites/egghunt/img/egg.png" class="egg">
-				</a>` : "" }
 		</div>
         <div class="pet-name">
             <img src="../../petz-data/petz/${pet.species}${pet.gender}.png">
