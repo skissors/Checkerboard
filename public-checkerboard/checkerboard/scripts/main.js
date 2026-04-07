@@ -9,6 +9,8 @@ let petzList = [];
 let petCheckboxes = {};
 let otherCheckboxes = {};
 
+let genderData = {};
+
 let imageCache = [];
 preLoad();
 
@@ -44,8 +46,12 @@ function setup(pageToLoad) {
 	addEventListener("resize", adjustLayout);
 
 	loadDropdown();
-	///cacheImages();    
+	///cacheImages();
+
+	
 }
+
+
 
 function cacheImages() {
 	let i = 0;
@@ -84,6 +90,8 @@ function buildPetList() {
 					pet.species = species;
 					pet.breed = breed;
 					if (applySpecialFilters(pet)) petzList.push(petz_data[species][breed][entry]);
+
+
 				}
 			}
 		}
@@ -97,10 +105,15 @@ function buildPetList() {
 					pet.species = species;
 					pet.breed = breed;
 					if (applySpecialFilters(pet)) petzList.push(petz_data[species][breed][entry]);
+
+					if (!genderData[species]) genderData[species] = {}
+					if (!genderData[species][pet.gender]) genderData[species][pet.gender] = 1;
+					else genderData[species][pet.gender]++
 				}
 			}
 		}
 		//console.log("nothingChecked");
+		console.log(genderData)
 	}
 
 }

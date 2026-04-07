@@ -133,6 +133,7 @@ function buildNewPetInfoFromCSV(csvPet, species, breed) {
 	newPet.breedFace = csvPet["Breed Face"];
 	newPet.generations = csvPet["Generations"];
 	newPet.pedigree = {};
+	newPet.fileNotes = {};
 
 	newPet.pedigree.purebred = false;
 	if (csvPet["Blood Status"] === "Purebred") newPet.pedigree.purebred = true;
@@ -230,6 +231,8 @@ function mergeCSVPetInfo(newPet, csvPet, species, breed) {
 	if (breed === "hexed") newPet.pedigree.hexed = true;
 
 	buildGenInfo(newPet);
+
+	if (!newPet.fileNotes) newPet.fileNotes = {};
 
 	//personality info
 	newPet.flavors = csvPet["Favorite Flavor"].split(",");

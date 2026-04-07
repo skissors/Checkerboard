@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Document</title>
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link href="https://fonts.googleapis.com/css2?family=Arsenal:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet" />
+		<!-- <link href="style.css" rel="stylesheet" /> -->
+		<style>
+			.arsenal-regular {
+				font-family: "Arsenal", sans-serif;
+				font-weight: 400;
+				font-style: normal;
+			}
+
+			.arsenal-bold {
+				font-family: "Arsenal", sans-serif;
+				font-weight: 700;
+				font-style: normal;
+			}
+
+			.arsenal-regular-italic {
+				font-family: "Arsenal", sans-serif;
+				font-weight: 400;
+				font-style: italic;
+			}
+
+			.arsenal-bold-italic {
+				font-family: "Arsenal", sans-serif;
+				font-weight: 700;
+				font-style: italic;
+			}
+			* {
+				box-sizing: border-box;
+			}
+			body {
+				padding: 0;
+				margin: 0;
+				background-color: black;
+
+				position: relative;
+				font-family: "Arsenal", sans-serif;
+				font-size: 18px;
+				line-height: 1.5em;
+				letter-spacing: 0.01em;
+
+				overflow-x: hidden;
+
+				height: 100vh;
+				width: 100vw;
+			}
+			main {
+				background-color: rgb(255, 255, 255);
+
+				background-color: #9981c2;
+				background-image:
+					url("data:image/svg+xml,<svg id='patternId' width='100%' height='100%' xmlns='http://www.w3.org/2000/svg'><defs><pattern id='a' patternUnits='userSpaceOnUse' width='20' height='20' patternTransform='scale(9) rotate(30)'><rect x='0' y='0' width='100%' height='100%' fill='hsla(240,6.7%,17.6%,1)'/><path d='M0 0h10v10H0z'  stroke-width='1' stroke='none' fill='%23ffffffff'/><path d='M10 10h10v10H10z'  stroke-width='1' stroke='none' fill='%23ffffffff'/></pattern></defs><rect width='800%' height='800%' transform='translate(0,0)' fill='url(%23a)'/></svg>"),
+					url("/checkerboard/img/newbkgd2.png");
+				background-position:
+					left top,
+					right top; /* Aligns image1 to the left, image2 to the right */
+				background-repeat: no-repeat, repeat; /* Prevents both images from repeating */
+
+				/* Set the size for each background image (50% width, 100% height) */
+				/* The values correspond to image1, then image2 */
+				background-size:
+					50% 100%,
+					auto;
+
+				border-radius: 0 0 50% 50%;
+				height: 89vh;
+				width: 160%;
+
+				margin: auto;
+
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+
+				overflow: hidden;
+
+				position: absolute;
+
+				left: 50%; /* Moves the element's left edge to the horizontal midpoint of the parent */
+				transform: translate(-50%, 0%);
+			}
+
+			.content {
+				width: 980px;
+				/* background-image: url("/checkerboard/img/newbkgd3.png"); */
+				overflow: scroll;
+				/* background-color: rgba(152, 128, 194); */
+				background-color: white;
+				padding: 20px;
+
+				height: 100vh;
+
+				border-left: solid 20px rgb(20, 20, 20);
+				border-right: solid 20px rgb(20, 20, 20);
+				/* transform: skew(3deg); */
+			}
+
+			.button {
+				position: absolute;
+				bottom: 5px;
+				z-index: 10;
+				left: 50%; /* Moves the element's left edge to the horizontal midpoint of the parent */
+				transform: translate(-50%, 0%);
+			}
+
+			.button1 {
+				position: absolute;
+				bottom: 55px;
+				left: 5px;
+				z-index: 10;
+
+				transform: rotate(10deg);
+			}
+
+			.button2 {
+				position: absolute;
+				bottom: 55px;
+				right: 5px;
+				z-index: 10;
+
+				transform: rotate(-10deg);
+			}
+		</style>
+	</head>
+	<body>
+		<main>
+			<div class="content">
+				<img class="logo" src="logo.png" />
+				<div class="welcome-box">
+					<img src="img/petz73.png" id="mascot" />
+					<div>
+						Welcome to Checkerboard, a petz crewsite owned by skissors. Checkerboard is currently home to ${petzCount["catz"]} catz, ${petzCount["dogz"]} dogz, and ${petzCount["other"]}
+						other creatures!
+					</div>
+				</div>
+
+				<div class="update-div">
+					<div class="update-box shadow">
+						<div class="index-box-header">
+							<h2>Updates</h2>
+							<a class="index-box-icon" id="rssButton" href="feed.xml" target="_blank"><i class="fa-solid fa-rss"></i></a>
+						</div>
+						<div class="update-content" id="update-content"></div>
+					</div>
+					<div class="potd-box shadow">
+						<div class="index-box-header">
+							<h2>Random Pet</h2>
+							<div class="index-box-icon" id="potdButton"><i class="fa-solid fa-rotate"></i></div>
+						</div>
+						<div class="potd-content">
+							<img id="potd-img" src="" />
+						</div>
+					</div>
+
+					<!--<div class="fake-link" id="showRecordPage">view show records page</div>-->
+				</div>
+			</div>
+		</main>
+		<img class="button1" src="galleru.png" />
+		<img class="button2" src="catz.png" />
+		<img class="button" src="galleru.png" />
+		<!-- <div class="main">
+			<div class="black-border"></div>
+			<img class="logo" src="logo.png" />
+			<div class="white-bk">
+				<div class="inner">
+					<div style="filter: contrast(16)" class="img-border">
+						<img src="https://oodlecat.neocities.org/checkerboard/img/petz73.png" />
+						<img src="https://oodlecat.neocities.org/petz-data/petz/catz/tabby/fitz/fitz.png" />
+						<img src="https://oodlecat.neocities.org/petz-data/petz/catz/tabby/jack/jack.png" />
+						<img src="https://moonlakepetz.weebly.com/uploads/6/4/9/6/64964759/cali6_orig.gif" />
+					</div>
+					Turkish angora panther devonshire rex so singapura. Balinese turkish angora, persian so burmese kitty or bobcat yet puma. Munchkin ragdoll thai. Siberian abyssinian so cheetah or
+					ocelot. British shorthair scottish fold and tomcat maine coon yet american shorthair. Panther balinese lynx. Birman balinese , so jaguar yet savannah havana brown. Siamese. Cornish
+					rex balinese for abyssinian so cornish rex. Grimalkin. Siamese sphynx for cornish rex british shorthair. Lion manx. Balinese . Norwegian forest abyssinian . Bombay maine coon,
+					grimalkin but maine coon. Cougar. Cornish rex donskoy american bobtail, tiger for lion tom. Russian blue thai yet tomcat for donskoy. Bobcat kitty for cheetah siamese. Grimalkin
+					cheetah but tom or malkin lion for birman. Russian blue thai tomcat but ocelot or maine coon and mouser. Havana brown cougar, manx cheetah. Manx lion. British shorthair siamese and
+					tiger egyptian mau for burmese yet tom. Ragdoll turkish angora puma so himalayan, for jaguar. Munchkin. Thai thai american bobtail yet jaguar. Bombay egyptian mau or egyptian mau
+					but balinese . Malkin turkish angora. Bombay manx but cougar. Bobcat. Burmese. Kitty egyptian mau but norwegian forest cheetah, turkish angora maine coon yet ragdoll. Bengal
+					british shorthair. Tom. American shorthair kitten so devonshire rex, birman balinese . Bobcat jaguar manx. Grimalkin ocelot sphynx cheetah siberian. Siberian panther birman but
+					manx. Birman kitten or birman panther for tom, lion. Tom scottish fold bombay ragdoll and kitty yet norwegian forest or american bobtail. Egyptian mau ocicat cornish rex jaguar so
+					havana brown. Burmese singapura puma savannah. Leopard siberian, jaguar and tom and ocicat. Havana brown puma mouser. Lion. Turkish angora. Kitty cougar. Scottish fold burmese
+					grimalkin ragdoll. Birman ocelot but savannah but singapura and egyptian mau or mouser. Siamese tom, bobcat. Lion. Birman bombay and bengal for american shorthair, tiger for
+					russian blue munchkin. Savannah scottish fold bombay manx havana brown lynx. Siberian persian, thai for panther american bobtail american shorthair but bobcat. Norwegian forest
+					persian havana brown. Tomcat jaguar. Bengal tomcat manx tom ocelot or scottish fold. Tabby bombay cheetah for bengal. Cougar bobcat so leopard tabby ocicat. Ocicat tomcat for
+					singapura.
+				</div>
+			</div>
+		</div> -->
+	</body>
+</html>

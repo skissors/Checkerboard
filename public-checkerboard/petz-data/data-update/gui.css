@@ -1,0 +1,223 @@
+* {
+    box-sizing: border-box;
+}
+
+.wrapper {
+    display: flex;
+    align-items: start;
+
+    padding: 5px;
+    background-color: rgb(247, 244, 218);
+
+    margin: auto;
+}
+
+.pet-select-column {
+    grid-area: petSelect;
+
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 5px;
+}
+#pet-box {
+    height: 300px;
+    min-width: fit-content;
+    width: 250px;
+
+    overflow: scroll;
+
+    border: 1px gray solid;
+    background-color: white;
+}
+#pet-box div {
+    padding: 1.5px 3px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+#pet-box div:hover {
+    background-color: lightblue;
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    border: 6px ridge black;
+    padding: 8px;
+
+    width: 950px;
+}
+
+#guid {
+    font-family: "Courier New", Courier, monospace;
+    font-size: 14px;
+}
+
+
+
+
+.main-box {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: min-content 1fr;
+    gap: 3px;
+    align-items: start;
+}
+
+.img-box {
+    min-width: 250px;
+    min-height: 250px;
+    background-color: lightgray;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    grid-row: span 2;
+    border: 2px inset black;
+}
+
+.show-box {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    align-items: center;
+    width: 100%;
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+h2 {
+    margin: 0;
+}
+
+.show-box>div {
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    width: 100%;
+}
+
+.show-box input {
+    flex-grow: 9;
+}
+
+#showRecord-entires {
+    flex-direction: column;
+    align-items: start;
+    border: 1px gray solid;
+    background-color: white;
+    overflow: auto;
+    overflow-x: hidden;
+    width: 500px;
+    height: 200px;
+    /* font-family: "Courier New", Courier, monospace; */
+    text-wrap: nowrap;
+    padding: 3px;
+}
+
+.pet-info {
+    grid-area: petInfo;
+    display: grid;
+    grid-template-columns: 375px auto;
+    gap: 20px;
+
+    background-color: white;
+}
+
+.pet-info img {
+    filter: grayscale(100%) brightness(0);
+}
+
+.pet-info-column > div {
+    padding-bottom: 3px;
+    border-bottom: 3px ridge black;
+    padding: 10px 0;
+  
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.personality-box {
+    grid-area: personality;
+    height: 250px;
+    width: 375px;
+    margin: auto;
+}
+
+.show-info {
+    grid-area: showInfo;
+    display: flex;
+    flex-direction: row;
+    gap: 3px;
+    height: 250px;
+}
+
+.header {
+    grid-area: header;
+
+    display: flex;
+}
+
+.img-box {
+    grid-area: img;
+}
+
+.basic-info {
+    grid-area: basic;
+}
+
+.info-box>div {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin: 3px;
+}
+
+.info-box>div>*:nth-child(1) {
+    font-weight: bold;
+}
+
+.info-box>div>*:nth-child(2) {
+    flex-grow: 9;
+}
+
+.checkboxes {
+    flex-wrap: wrap;
+}
+
+.checkboxes>div {
+    font-weight: normal !important;
+    flex-grow: 1 !important;
+}
+
+#tier-cbs {
+    float: left;
+}
+
+.origin-box {
+    grid-area: origin;
+    border: 1px gray solid;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.gen-box {
+    grid-area: gen;
+
+}
+
+.mismatch {
+    background-color: rgb(255, 196, 88);
+}
+
+.new {
+    background-color: greenyellow;
+}

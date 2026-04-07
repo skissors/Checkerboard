@@ -8,187 +8,8 @@
 		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-csv/1.0.40/jquery.csv.min.js"></script>
 		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-		<style>
-			* {
-				box-sizing: border-box;
-			}
-			.wrapper {
-				display: flex;
-				align-items: start;
 
-				padding: 5px;
-				background-color: rgb(247, 244, 218);
-
-				display: grid;
-				grid-template-areas:
-					"petSelect petInfo"
-					"petSelect showInfo";
-				grid-template-columns: 250px max-content;
-				gap:10px;
-			}
-
-			#guid {
-				font-family: "Courier New", Courier, monospace;
-				font-size: 14px;
-			}
-
-			.pet-select-column {
-				grid-area: petSelect;
-
-				display: flex;
-				flex-direction: column;
-				align-items: stretch;
-				gap: 5px;
-			}
-
-			#pet-box {
-				height:300px;
-				min-width: fit-content;
-				width: 250px;
-
-				overflow: scroll;
-
-				border: 1px gray solid;
-				background-color: white;
-			}
-			#pet-box div {
-				padding: 1.5px 3px;
-				padding-right: 20px;
-				cursor: pointer;
-			}
-			#pet-box div:hover {
-				background-color: lightblue;
-			}
-
-			.main-box {
-				display: grid;
-				grid-template-columns: auto auto;
-				grid-template-rows: min-content 1fr;
-				gap: 3px;
-				align-items: start;
-			}
-
-			.img-box {
-				min-width: 250px;
-				min-height: 250px;
-				background-color: lightgray;
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				grid-row: span 2;
-				border: 2px inset black;
-			}
-
-			.show-box {
-				display: flex;
-				flex-direction: column;
-				gap: 3px;
-				align-items: center;
-				width: 100%;
-			}
-
-			.span-2 {
-				grid-column: span 2;
-			}
-
-			h2 {
-				margin: 0;
-			}
-
-			.show-box > div {
-				display: flex;
-				gap: 3px;
-				align-items: center;
-				width: 100%;
-			}
-			.show-box input {
-				flex-grow: 9;
-			}
-
-			#showRecord-entires {
-				flex-direction: column;
-				align-items: start;
-				border: 1px gray solid;
-				background-color: white;
-				overflow: auto;
-				overflow-x: hidden;
-				width: 500px;
-				height: 200px;
-				/* font-family: "Courier New", Courier, monospace; */
-				text-wrap: nowrap;
-				padding: 3px;
-			}
-
-			.pet-info {
-				grid-area: petInfo;
-				display: grid;
-				grid-template-areas:
-					"img header header"
-					"img basic origin"
-					"img gen origin";
-				gap: 3px;
-			}
-
-			.show-info {
-				grid-area: showInfo;
-				display: flex;
-				flex-direction: row;
-				gap: 3px;
-				height: 250px;
-			}
-
-			.header {
-				grid-area: header;
-			}
-			.img-box {
-				grid-area: img;
-			}
-			.basic-info {
-				grid-area: basic;
-			}
-			.info-box > div {
-				display: flex;
-				align-items: center;
-				gap: 3px;
-				margin: 3px;
-			}
-			.info-box > div > *:nth-child(1) {
-				font-weight: bold;
-			}
-			.info-box > div > *:nth-child(2) {
-				flex-grow: 9;
-			}
-
-			.checkboxes {
-				flex-wrap: wrap;
-			}
-			.checkboxes > div {
-				font-weight: normal !important;
-				flex-grow: 1 !important;
-			}
-
-			.origin-box {
-				grid-area: origin;
-				border: 1px gray solid;
-			}
-
-			.bold {
-				font-weight: bold;
-			}
-
-			.gen-box {
-				grid-area: gen;
-				border-top: 1px solid gray;
-			}
-
-			.mismatch {
-				background-color: rgb(255, 196, 88);
-			}
-
-			.new {
-				background-color: greenyellow;
-			}
-		</style>
+		<link rel="stylesheet" href="gui.css" />
 	</head>
 	<body>
 		<script src="petCsvLoader.js" type="module"></script>
@@ -196,6 +17,15 @@
 
 		<div class="wrapper">
 			<div class="pet-select-column">
+				<div>
+					<select name="filter-species-select" id="filter-species-select">
+						<option value="all">all</option>
+					</select>
+					<select name="filter-breed-select" id="filter-breed-select">
+						<option value="all">all</option>
+					</select>
+				</div>
+
 				<select name="filter-select" id="filter-select">
 					<option value="all-all">all - all</option>
 				</select>
@@ -206,113 +36,171 @@
 				<div><input type="checkbox" /><span>Has Pose</span></div>
 				<div><input type="checkbox" /><span>Missing Show Records</span></div>
 				<div><input type="checkbox" /><span>Missing Pose</span></div>
-
 			</div>
 
-			<div class="pet-info">
-				<div class="header">
-					<h2 id="main-name">Name</h2>
-					<div><span id="guid">guid</span></div>
+			<main class="main">
+				<div class="pet-info">
+					<div class="flex-column">
+						<div class="img-box"><img id="pet-image" /></div>
+						<div class="personality-box">
+							<canvas id="personality-graph"></canvas>
+						</div>
+					</div>
+
+					<div class="flex-column pet-info-column">
+						<div class="header">
+							<div style="flex-grow: 99">
+								<h2 id="main-name">Name</h2>
+								<div><span id="guid">guid</span></div>
+							</div>
+
+							<div class="checkboxes" id="tier-cbs">
+								<div><input type="checkbox" name="companion-cb" id="companion-cb" /><label for="companion-cb">♡</label></div>
+								<div><input type="checkbox" name="highlight-cb" id="highlight-cb" /><label for="highlight-cb">☆</label></div>
+							</div>
+						</div>
+
+						<div class="basic-info info-box">
+							<div>
+								<label for="displayName">Name: </label>
+								<input type="text" class="form-control" name="displayName" access="false" id="name-input" />
+								<div>CSV:</div>
+								<div id="csv-name"></div>
+							</div>
+
+							<div>
+								<label for="gender-select">Gender: </label>
+								<select class="form-control" name="gender-select" id="gender-select">
+									<option value="none" id="gender-select-none">none</option>
+									<option value="male" id="gender-select-male">male</option>
+									<option value="female" id="gender-select-female">female</option>
+									<option value="nonbinary" id="gender-select-nonbinary">nonbinary</option>
+								</select>
+								<div>CSV:</div>
+								<div id="csv-gender"></div>
+							</div>
+
+							<div>
+								<div>Birthday:</div>
+								<input type="text" class="form-control" name="displayName" access="false" id="birthday-input" />
+								<div>CSV:</div>
+								<div id="csv-birthday"></div>
+							</div>
+						</div>
+
+						<div class="gen-box info-box">
+							<div>
+								<div>Gen Info:</div>
+								<div id="gen_info"></div>
+							</div>
+
+							<div>
+								<label for="breedFace-input">Breed:</label>
+								<input id="breedFace-input" name="breedFace-input" />
+								<div>CSV:</div>
+								<div id="breedFace"></div>
+							</div>
+							<div></div>
+
+							<div class="checkboxes" id="pedigree-cbs">
+								<div><input type="checkbox" name="purebred-cb" id="purebred-cb" /><label for="purebred-cb">Purebred</label></div>
+								<div><input type="checkbox" name="nib-cb" id="nib-cb" /><label for="nib-cb">NIB</label></div>
+								<div><input type="checkbox" name="hexed-cb" id="hexed-cb" /><label for="hexed-cb">Hexed</label></div>
+								<div><input type="checkbox" name="ow-cb" id="ow-cb" /><label for="ow-cb">OW</label></div>
+								<div><input type="checkbox" name="brexed-cb" id="brexed-cb" /><label for="brexed-cb">Brexed</label></div>
+								<div><input type="checkbox" name="hexmix-cb" id="hexmix-cb" /><label for="hexmix-cb">Hexmix</label></div>
+							</div>
+							<div class="checkboxes" id="fileNotes-cbs">
+								<div><input type="checkbox" name="breedfile-cb" id="breedfile-cb" /><label for="breedfile-cb">Breedfiles</label></div>
+								<div><input type="checkbox" name="externalTex-cb" id="externalTex-cb" /><label for="externalTex-cb">External Textures</label></div>
+								<div><input type="checkbox" name="palettes-cb" id="palettes-cb" /><label for="palettes-cb">Palettes</label></div>
+								<div><input type="checkbox" name="transparentTex-cb" id="transparentTex-cb" /><label for="trans-tex-cb">Transparent Textures</label></div>
+							</div>
+						</div>
+
+						<div class="owner-box info-box">
+							<div>
+								<div>Owner Name:</div>
+								<span id="origin-ownerName"></span>
+							</div>
+
+							<div>
+								<span>Owner Lookup: </span>
+								<select>
+									<option value="new-entry">New Entry</option>
+								</select>
+							</div>
+
+							<div>
+								<div>Origin Name:</div>
+								<input id="origin-name-input" name="origin-name-input" />
+								<div id="origin-name"></div>
+							</div>
+							<div>
+								<span>Origin Site: </span>
+								<input id="origin-site-input" name="origin-site-input" />
+								<span id="origin-site"></span>
+							</div>
+							<div>
+								<span>Origin Url: </span>
+								<input id="origin-site-input" name="origin-site-input" />
+								<span id="origin-url"></span>
+							</div>
+						</div>
+
+						<div class="favorites-box info-box">
+							<div>
+								<div>SCP:</div>
+								<div id="scp"></div>
+							</div>
+							<div>
+								<div>Favorite Colors:</div>
+								<div id="colors"></div>
+							</div>
+							<div>
+								<div>Favorite Flavors:</div>
+								<div id="flavors"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 
-				<div class="img-box"><img id="pet-image" /></div>
+				<div class="show-info">
+					<div class="img-box"><img id="show-image" /></div>
+					<div class="show-box">
+						<div>
+							<label for="showName" class="bold">Show Name:</label>
+							<input type="text" class="form-control" name="showName" id="showname-input" />
+							<div id="tPoints"></div>
+							<div id="tTitle"></div>
+						</div>
+						<div>
+							<div class="bold">View Records:</div>
+							<select id="showRecord-select" style="flex-grow: 9"></select>
+							<div id="tyPoints"></div>
+							<div id="tyTitle"></div>
+						</div>
 
-				<div class="basic-info info-box">
-					<div>
-						<label for="displayName">Name: </label>
-						<input type="text" class="form-control" name="displayName" access="false" id="name-input" />
-						<div>CSV:</div>
-						<div id="csv-name"></div>
-					</div>
+						<div id="showRecord-entires"></div>
 
-					<div>
-						<label for="gender-select">Gender: </label>
-						<select class="form-control" name="gender-select" id="gender-select">
-							<option value="none" id="gender-select-none">none</option>
-							<option value="male" id="gender-select-male">male</option>
-							<option value="female" id="gender-select-female">female</option>
-							<option value="nonbinary" id="gender-select-nonbinary">nonbinary</option>
-						</select>
-						<div>CSV:</div>
-						<div id="csv-gender"></div>
-					</div>
+						<div>
+							<select id="showTypes-data"></select>
+							<input type="text" id="showTitle-input" />
+							<select id="showPlacement-data"></select>
+						</div>
 
-					<div>
-						<div>Birthday:</div>
-						<input type="text" class="form-control" name="displayName" access="false" id="birthday-input" />
-						<div>CSV:</div>
-						<div id="csv-birthday"></div>
-					</div>
+						<div>
+							<label class="bold">URL: </label>
+							<input type="text" id="showUrl-input" />
+						</div>
 
-					<div></div>
-				</div>
-				<div class="gen-box info-box">
-					<div>
-						<div>Gen Info:</div>
-						<div id="gen_info"></div>
-					</div>
-
-					<div>
-						<label for="breedFace-input">Breed:</label>
-						<input id="breedFace-input" name="breedFace-input" />
-						<div>CSV:</div>
-						<div id="breedFace"></div>
-					</div>
-					<div></div>
-
-					<div class="checkboxes" id="pedigree-cbs">
-						<div><input type="checkbox" name="purebred-cb" id="purebred-cb" /><label for="purebred-cb">Purebred</label></div>
-						<div><input type="checkbox" name="nib-cb" id="nib-cb" /><label for="nib-cb">NIB</label></div>
-						<div><input type="checkbox" name="hexed-cb" id="hexed-cb" /><label for="hexed-cb">Hexed</label></div>
-						<div><input type="checkbox" name="ow-cb" id="ow-cb" /><label for="ow-cb">OW</label></div>
-						<div><input type="checkbox" name="brexed-cb" id="brexed-cb" /><label for="brexed-cb">Brexed</label></div>
-						<div><input type="checkbox" name="hexmix-cb" id="hexmix-cb" /><label for="hexmix-cb">Hexmix</label></div>
+						<div style="justify-content: end">
+							<button>Delete Entry</button>
+							<button id="add-show-entry">Add Entry</button>
+						</div>
 					</div>
 				</div>
-			</div>
-
-			<div class="show-info">
-				<div class="img-box"><img id="show-image" /></div>
-				<div class="show-box">
-					<div>
-						<label for="showName" class="bold">Show Name:</label>
-						<input type="text" class="form-control" name="showName" id="showname-input" />
-						<div id="tPoints"></div>
-						<div id="tTitle"></div>
-					</div>
-					<div>
-						<div class="bold">View Records:</div>
-						<select id="showRecord-select" style="flex-grow: 9"></select>
-						<div id="tyPoints"></div>
-						<div id="tyTitle"></div>
-					</div>
-
-					<div id="showRecord-entires"></div>
-
-					<div>
-						<select id="showTypes-data"></select>
-						<input type="text" id="showTitle-input" />
-						<select id="showPlacement-data"></select>
-					</div>
-
-					<div>
-						<label class="bold">URL: </label>
-						<input type="text" id="showUrl-input" />
-					</div>
-
-					<div style="justify-content: end">
-						<button>Delete Entry</button>
-						<button id="add-show-entry">Add Entry</button>
-					</div>
-				</div>
-			</div>
-
-			<div class="origin-box info-box">
-				<div><span>Owner Name: </span><span id="origin-ownerName"></span></div>
-				<div><span>Origin Name: </span><span id="origin-name"></span></div>
-				<div><span>Origin Site: </span><span id="origin-site"></span></div>
-				<div><span>Origin Url: </span><span id="origin-url"></span></div>
-			</div>
+			</main>
 
 			<button id="download-button">Download Pet Data</button>
 		</div>
